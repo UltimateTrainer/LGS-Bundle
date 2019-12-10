@@ -16,7 +16,7 @@ function init(){
 	function comm(){
 		if(startup==true){
 			gamehold=$('#game').text();
-			$('#commVid').attr('src','commentary_2.webm');
+			$('#commVid').attr('src','webm/commentary_2.webm');
 			document.getElementById('commVid').play();
 			startup = false; //flags that the scoreboard/getData functions have run their first pass
 			animated = true;

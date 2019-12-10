@@ -1,13 +1,13 @@
 
 <html>
 	<script src="scoreboard.js" type="text/javascript" charset="utf-8"></script>
-	<script src="jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 	<!--script src="../js/greensock-js/src/minified/TweenMax.min.js" type="text/javascript" charset="utf-8"></script-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.2/gsap.min.js"></script>
 <head>
 	<style>
 		@font-face {
-			src: url('DeansgateCondensed-Bold.ttf');
+			src: url('fonts/DeansgateCondensed-Bold.ttf');
 			font-family: "Deansgate";
 		}
 		body {
@@ -21,7 +21,7 @@
 			text-shadow: 2px 2px 3px DimGray;
 			font-family: "Deansgate";
 		}
-		.game{
+		#game{
 			display:none;
 			
 		}
@@ -120,7 +120,7 @@
 	var scTime = 1; //amount of time in seconds that the load-in animation for scores takes
 	var scDelay = 1.5; //amount of time in seconds that the load-in animation for scores is delayed before starting
 	//var logoTime = 200; //amount of time the fade-in animation for logos is delayed before starting
-	var adjust2 = '-45px'; //distance on y-axis that scoreboards move when adjusting for 2nd webm
+	var adjust2 = '-20px'; //distance on y-axis that scoreboards move when adjusting for 2nd webm
 	var adjust2scorex = '80px';
 	var adjust2scorey = '-5px';
 	var adjust3 = '+28px'; //distance on y-axis that scoreboards move when adjusting for 3rd webm

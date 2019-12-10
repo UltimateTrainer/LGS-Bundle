@@ -10,7 +10,7 @@ function init(){
 		//$('#scoreboardVid').attr('src','scoreboard_2.webm');
 		//$('#scoreboardVid').attr('allow','autoplay');
 		if(gamehold == 'BBTAG' || gamehold == 'SFVAE' || gamehold == 'TEKKEN7'){
-				$('#scoreboardVid').attr('src','scoreboard_1.webm');
+				$('#scoreboardVid').attr('src','webm/scoreboard_1.webm');
 				$('#scoreboardVid').css('height','160');
 				/*
 				TweenMax.set('#leftWrapper',{css:{y: '+0px'}}); //same functions as above but this time also return wrappers to original positioning
@@ -23,18 +23,18 @@ function init(){
 				
 			}
 			else if(gamehold == 'BBCF' || gamehold == 'DBFZ' || gamehold == 'GGXRD' || game == 'KOFXIV' || game == 'MVCI' || game == 'UMVC3'){
-				$('#scoreboardVid').attr('src','scoreboard_2.webm'); //changes webm to 2nd one if appropriate game is picked
+				$('#scoreboardVid').attr('src','webm/scoreboard_2.webm'); //changes webm to 2nd one if appropriate game is picked
 				TweenMax.set('#leftWrapper',{css:{y: adjust2}}); //sets scoreboard text wrappers to match placement of 2nd webm
 				TweenMax.set('#rightWrapper',{css:{y: adjust2}});
 			}
 			else if(gamehold == 'USF4'){
-				$('#scoreboardVid').attr('src','scoreboard_3.webm');
+				$('#scoreboardVid').attr('src','webm/scoreboard_3.webm');
 				TweenMax.set('#leftWrapper',{css:{y: adjust3}});
 				TweenMax.set('#rightWrapper',{css:{y: adjust3}});
 			}
 			else if(gamehold == 'UNIST' || gamehold == 'MELTY'){
 				$('#scoreboardVid').attr('height','100');
-				$('#scoreboardVid').attr('src','Melty.webm');
+				$('#scoreboardVid').attr('src','webm/Melty.webm');
 				TweenMax.set('#leftWrapper',{css:{y: adjust2}});
 				TweenMax.set('#rightWrapper',{css:{y: adjust2}});
 				TweenMax.set('#leftWrapper',{css:{x: '150px'}});
@@ -52,7 +52,7 @@ function init(){
 			}
 			else{
 				$('#scoreboardVid').css('height','160');
-				$('#scoreboardVid').attr('src','scoreboard_1.webm');
+				$('#scoreboardVid').attr('src','webm/scoreboard_1.webm');
 				
 				
 			}
