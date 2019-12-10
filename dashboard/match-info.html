@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	body {
+		background-color: #2F3A4F;
+	}
+	label{
+		font-family: "Helvetica Neue";
+		font-weight: bold;
+		color:white;
+		margin: 5px;
+	}
+	</style>
+</head>
+<body>
+	<label>Player 1:</label>
+	<input id="p1Input" type="text"></input>
+	<label>score:</label>
+	<input id="p1Score" type="number" min="0" max="3"></input>
+	<br>
+	<label>Player 2:</label>
+	<input id="p2Input" type="text"></input>
+	<label>score:</label>
+	<input id="p2Score" type="number" min="0" max="3"></input>
+	<br>
+	<label>Round:   </label>
+	<input id="round" type="text"></input>
+	<br>
+	<label>Game:    </label>
+	<select id="game">
+		<option value="MELTY">MELTY</option>
+		<option value="TEKKEN7">TEKKEN7</option>
+		<option value="UNIST">UNIST</option>
+	</select>
+	<br>
+	<button id="submitButton">Update</button>
+</body>
+
+<script>
+	const p1Input = document.querySelector('#p1Input');
+	const p1Score = document.querySelector('#p1Score');
+	const p2Input = document.querySelector('#p2Input');
+	const p2Score = document.querySelector('#p2Score');
+	const game = document.querySelector('#game');
+	const round = document.querySelector('#round');
+	const submitButton = document.querySelector('#submitButton');
+	const namep1Replicant = nodecg.Replicant('p1name');
+	const namep2Replicant = nodecg.Replicant('p2name');
+	const scorep1Replicant = nodecg.Replicant('p1Score');
+	const scorep2Replicant = nodecg.Replicant('p2Score');
+	const gameReplicant = nodecg.Replicant('game');
+	const roundReplicant = nodecg.Replicant('round');
+	
+	
+	
+	namep1Replicant.on('change', (newValue, oldValue) => {
+		// The value of the Replicant has changed somewhere in NodeCG,
+		// this could be another dashboard panel, a server initiated change,
+		// or the doing of another user accessing your dashboard panel.
+		p1Input.value = newValue;
+	});
+	
+	scorep1Replicant.on('change', (newValue, oldValue) => {
+		p1Score.value = newValue;
+	});
+
+	namep2Replicant.on('change', (newValue2, oldValue2) => {
+		p2Input.value = newValue2;
+	});
+	
+	scorep2Replicant.on('change', (newValue, oldValue) => {
+		p2Score.value = newValue;
+	});
+	
+	gameReplicant.on('change', (newValue, oldValue) => {
+		game.value = newValue;
+	});
+	
+	roundReplicant.on('change', (newValue, oldValue) => {
+		round.value = newValue;
+	});
+	
+	submitButton.onclick = () => {
+		// A Replicant can be modified by modifying its `value`.
+		namep1Replicant.value = p1Input.value;
+		namep2Replicant.value = p2Input.value;
+		scorep1Replicant.value = p1Score.value;
+		scorep2Replicant.value = p2Score.value;
+		gameReplicant.value = game.value;
+		roundReplicant.value = round.value;
+	};
+</script>
+</html>

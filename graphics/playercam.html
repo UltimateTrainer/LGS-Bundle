@@ -1,0 +1,157 @@
+<html>
+
+<head>
+	<script src="playercam.js" type="text/javascript" charset="utf-8"></script>
+	<script src="jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.2/gsap.min.js"></script>
+
+<style text="text/CSS">
+	@font-face {
+		src: url('DeansgateCondensed-Bold.ttf');
+		font-family: "Deansgate";
+	}
+	
+	body {
+		width: 1920px;
+		height: 1080px;
+		overflow: hidden;
+		background: transparent;
+		padding: 0px;
+		margin: 0px;
+		text-shadow: 2px 2px 3px DimGray;
+		font-family: "Deansgate";
+	}
+	
+	.comm{
+		position: absolute;
+		left: 0px;
+		top: 0px;
+	}
+	
+	.wrappers{
+		position: absolute;
+		width: 470px;
+		height: 60px;
+		text-align: center;
+		top: 890px;
+		color: white;
+		opacity: 0;
+	}
+	
+	
+	#com1Wrapper{
+	left: 250px;
+	}
+	
+	#com2Wrapper{
+	left: 1210px
+	}
+	#com1Title{
+		width: 470px;
+		height: 60px;
+		font-size: 40px;
+	}
+	#com2Title{
+		width: 470px;
+		height: 60px;
+		font-size: 40px;
+	}
+	
+	
+	.social{
+		position: absolute;
+		top: 60px;
+		height: 30px;
+		width: 425px;
+		font-size: 20px;
+		color: white;
+		text-align: center;
+	}
+	
+	#com1Social{
+		left:80px;
+	}
+	#com2Social{
+		left:-35px;
+	}
+	
+</style>
+
+</head>
+
+<body>
+
+	<div id="commBG">
+	<video id="commVid" class="comm" type="video/webm" width="1920" height="1080"></video>
+	</div>
+	<div id="comm">
+		<div id="leftWrapper">
+			<span id="com1Wrapper" class="wrappers">
+				<span id="com1Title" class="title"></span>
+				<span id="com1Social" class="social"></span>
+		</div>
+		<div id="rightWrapper">
+			<span id="com2Wrapper" class="wrappers">
+				<span id="com2Title" class="title"></span>
+				<span id="com2Social" class="social"></span>
+			</span>
+		</div>
+	</div>
+<script type="text/javascript">
+	var nameSize = '40px'; //default font size of name wrappers, should match 'font-size' value of .wrappers
+	var socialSize = '20px';
+	var p1Move = '+90px'; //distance on x-axis that P1 name should initially be set to prior to load-in animation
+	var p2Move = '-90px'; //distance on x-axis that P2 name should initially be set to prior to load-in animation
+	var nameTime = .3; //amount of time in seconds that the load-in animation for names takes
+	var nameDelay = 1; //amount of time in seconds that the load-in animation for names is delayed before starting
+	var com1Wrap = $('#com1Title'); //variables to shortcut copypasting text resize functions
+	var fullWrap = $('.wrappers');
+	var com2Wrap = $('#com2Title');
+	
+	const namep1Replicant = nodecg.Replicant('p1name');
+	const namep2Replicant = nodecg.Replicant('p2name');
+	const gameReplicant = nodecg.Replicant('game');
+	
+	namep1Replicant.on('change', (newValue, oldValue) => {
+	TweenMax.to('#com1Wrapper',nameTime,{css:{x: p1Move, opacity: 0},ease:Quad.easeOut,delay:0,onComplete:function(){
+		com1Title.innerText = `${newValue}`;
+		com1Wrap.each(function(i, com1Wrap){ //function to resize font if text string is too long and causes div to overflow its width/height boundaries			
+			var newFontSize;
+		if(com1Wrap.scrollWidth <= com1Wrap.offsetWidth || com1Wrap.scrollHeight <= com1Wrap.offsetHeight){
+			newFontSize='30px';
+			$(com1Wrap).css('font-size', newFontSize);
+		}
+		while(com1Wrap.scrollWidth > com1Wrap.offsetWidth || com1Wrap.scrollHeight > com1Wrap.offsetHeight){
+			newFontSize = (parseFloat($(com1Wrap).css('font-size').slice(0,-2)) * .95) + 'px';
+			$(com1Wrap).css('font-size', newFontSize);
+		}
+			
+			
+		});
+	TweenMax.to('#com1Wrapper',nameTime,{css:{x: '+0px', opacity: 1},ease:Quad.easeOut,delay:nameDelay}); 
+	}})});
+	
+	namep2Replicant.on('change', (newValue, oldValue) => {
+	TweenMax.to('#com2Wrapper',nameTime,{css:{x: p2Move, opacity: 0},ease:Quad.easeOut,delay:0,onComplete:function(){
+		com2Title.innerText = `${newValue}`;
+		com2Wrap.each(function(i, com2Wrap){ //function to resize font if text string is too long and causes div to overflow its width/height boundaries			
+			var newFontSize;
+		if(com2Wrap.scrollWidth <= com2Wrap.offsetWidth || com2Wrap.scrollHeight <= com2Wrap.offsetHeight){
+			newFontSize='30px';
+			$(com2Wrap).css('font-size', newFontSize);
+		}
+		while(com2Wrap.scrollWidth > com2Wrap.offsetWidth || com2Wrap.scrollHeight > com2Wrap.offsetHeight){
+			newFontSize = (parseFloat($(com2Wrap).css('font-size').slice(0,-2)) * .95) + 'px';
+			$(com2Wrap).css('font-size', newFontSize);
+		}
+			
+			 
+		});
+	TweenMax.to('#com2Wrapper',nameTime,{css:{x: '+0px', opacity: 1},ease:Quad.easeOut,delay:nameDelay});
+	}})});
+</script>
+
+
+</body>
+
+</html>
