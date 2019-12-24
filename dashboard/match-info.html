@@ -11,28 +11,36 @@
 		color:white;
 		margin: 5px;
 	}
-	.score(
-	width: 50px;
-	)
+	.score{
+	width: 22px;
+	}
 	
+	#submitButton{
+	padding: 5px 10px;
+	border-radius: 12px;
+	font-family: "Helvetica Neue";
+	background-color: #2F3A4F;
+	color: white;
+	font-weight: bold;
+	}
 	</style>
 </head>
 <body>
 	<label>Player 1:</label>
-	<input id="p1Input" type="text"></input>
-	<label>score:</label>
-	<input id="p1Score" type="number" min="0" max="3" class="score"></input>
+	<input id="p1Input" type="text" class="input"></input>
+	<label>Score:</label>
+	<input id="p1Score" type="number" min="0" max="9" class="score input"></input>
 	<br>
 	<label>Player 2:</label>
-	<input id="p2Input" type="text"></input>
-	<label>score:</label>
-	<input id="p2Score" type="number" min="0" max="3" class="score"></input>
+	<input id="p2Input" type="text"class="input"></input>
+	<label>Score:</label>
+	<input id="p2Score" type="number" min="0" max="9" class="score input"></input>
 	<br>
 	<label>Round:   </label>
-	<input id="round" type="text"></input>
+	<input id="round" type="text"class="input"></input>
 	<br>
 	<label>Game:    </label>
-	<select id="game">
+	<select id="game"class ="input">
 		<option value="MELTY">MELTY</option>
 		<option value="TEKKEN7">TEKKEN7</option>
 		<option value="UNIST">UNIST</option>
@@ -56,8 +64,24 @@
 	const gameReplicant = nodecg.Replicant('game');
 	const roundReplicant = nodecg.Replicant('round');
 	
+	//Allows Enter to be pressed to update the scoreboard
+	var enter = function(event) {
+	// Number 13 is the "Enter" key on the keyboard
+		if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+			event.preventDefault();
+    // Trigger the button element with a click
+			document.getElementById("submitButton").click();
+		}
+	}
 	
+	document.getElementById("p1Input").addEventListener("keyup",enter, false);
+	document.getElementById("p1Score").addEventListener("keyup",enter, false);
+	document.getElementById("p2Input").addEventListener("keyup",enter, false);
+	document.getElementById("p2Score").addEventListener("keyup",enter, false);
+	document.getElementById("round").addEventListener("keyup",enter, false);
 	
+	//sends info to the graphics
 	namep1Replicant.on('change', (newValue, oldValue) => {
 		// The value of the Replicant has changed somewhere in NodeCG,
 		// this could be another dashboard panel, a server initiated change,
