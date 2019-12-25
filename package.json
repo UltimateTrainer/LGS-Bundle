@@ -18,7 +18,14 @@
         "width": 3,
         "file": "match-info.html",
         "headerColor": "#28412c"
-      }
+      },
+	  {
+		"name": "commentary",
+        "title": "Commentary",
+        "width": 3,
+        "file": "commentary.html",
+        "headerColor": "#28412c"
+	  }
     ],
     "graphics": [
 	  {

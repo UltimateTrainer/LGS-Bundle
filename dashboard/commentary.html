@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	body {
+		background-color: #2F3A4F;
+	}
+	label{
+		font-family: "Helvetica Neue";
+		font-weight: bold;
+		color:white;
+		margin: 5px;
+	}
+	#submitButton{
+	padding: 5px 10px;
+	border-radius: 12px;
+	font-family: "Helvetica Neue";
+	background-color: #2F3A4F;
+	color: white;
+	font-weight: bold;
+	}
+	</style>
+</head>
+<body>
+	<label>Commentator 1:</label>
+	<input id="com1" type="text" class="name"></input>
+	<label>Commentator 1's social:</label>
+	<input id="social1" type="text" class="social"></input>
+	<br>
+	<label>Commentator 2:</label>
+	<input id="com2" type="text"class="name"></input>
+	<label>Commentator 2's social:</label>
+	<input id="social2" type="text" class="social"></input>
+	<br>
+	<button id="submitButton">Update</button>
+</body>
+
+<script>
+	const com1 = document.querySelector('#com1');
+	const social1 = document.querySelector('#social1');
+	const com2 = document.querySelector('#com2');
+	const social2 = document.querySelector('#social2');
+	const com1Replicant = nodecg.Replicant('com1');
+	const social1Replicant = nodecg.Replicant('social1');
+	const com2Replicant = nodecg.Replicant('com2');
+	const social2Replicant = nodecg.Replicant('social2');
+	
+	//Allows Enter to be pressed to update the scoreboard
+	var enter = function(event) {
+	// Number 13 is the "Enter" key on the keyboard
+		if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+			event.preventDefault();
+    // Trigger the button element with a click
+			document.getElementById("submitButton").click();
+		}
+	}
+	
+	document.getElementById("com1").addEventListener("keyup",enter, false);
+	document.getElementById("social1").addEventListener("keyup",enter, false);
+	document.getElementById("com2").addEventListener("keyup",enter, false);
+	document.getElementById("social2").addEventListener("keyup",enter, false);
+	//sends info to the graphics
+	com1Replicant.on('change', (newValue, oldValue) => {
+		com1.value = newValue;
+	});
+
+	com2Replicant.on('change', (newValue2, oldValue2) => {
+		com2.value = newValue2;
+	});
+	
+	social1Replicant.on('change', (newValue, oldValue) => {
+		social1.value = newValue;
+	});
+	
+	social2Replicant.on('change', (newValue, oldValue) => {
+		social2.value = newValue;
+	});
+	submitButton.onclick = () => {
+		// A Replicant can be modified by modifying its `value`.
+		com1Replicant.value = com1.value;
+		com2Replicant.value = com2.value;
+		social1Replicant.value = social1.value;
+		social2Replicant.value = social2.value;
+	};
+</script>
+</html>

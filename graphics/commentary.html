@@ -1,13 +1,13 @@
 <html>
 
 <head>
-	<script src="../js/commentary.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="../js/greensock-js/src/minified/TweenMax.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="playercam.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.2/gsap.min.js"></script>
 
 <style text="text/CSS">
 	@font-face {
-		src: url('../fonts/DeansgateCondensed-Bold.ttf');
+		src: url('fonts/DeansgateCondensed-Bold.ttf');
 		font-family: "Deansgate";
 	}
 	
@@ -33,7 +33,7 @@
 		width: 470px;
 		height: 60px;
 		text-align: center;
-		top: 890px;
+		top: 900px;
 		color: white;
 		opacity: 0;
 	}
@@ -60,7 +60,7 @@
 	
 	.social{
 		position: absolute;
-		top: 60px;
+		top: 50px;
 		height: 30px;
 		width: 425px;
 		font-size: 20px;
@@ -103,8 +103,93 @@
 	var p1Move = '+90px'; //distance on x-axis that P1 name should initially be set to prior to load-in animation
 	var p2Move = '-90px'; //distance on x-axis that P2 name should initially be set to prior to load-in animation
 	var nameTime = .3; //amount of time in seconds that the load-in animation for names takes
-	var nameDelay = .5; //amount of time in seconds that the load-in animation for names is delayed before starting
+	var nameDelay = 1; //amount of time in seconds that the load-in animation for names is delayed before starting
+	var com1Wrap = $('#com1Title'); //variables to shortcut copypasting text resize functions
+	var fullWrap = $('.wrappers');
+	var com2Wrap = $('#com2Title');
+	var social1Wrap = $('com1Social');
+	var social2Wrap = $('com2Social');
 	
+	const com1Replicant = nodecg.Replicant('com1');
+	const com2Replicant = nodecg.Replicant('com2');
+	const social1Replicant = nodecg.Replicant('social1');
+	const social2Replicant = nodecg.Replicant('social2');
+	
+	com1Replicant.on('change', (newValue, oldValue) => {
+	TweenMax.to('#com1Wrapper',nameTime,{css:{x: p1Move, opacity: 0},ease:Quad.easeOut,delay:0,onComplete:function(){
+		com1Title.innerText = `${newValue}`;
+		com1Wrap.each(function(i, com1Wrap){ //function to resize font if text string is too long and causes div to overflow its width/height boundaries			
+			var newFontSize;
+		if(com1Wrap.scrollWidth <= com1Wrap.offsetWidth || com1Wrap.scrollHeight <= com1Wrap.offsetHeight){
+			newFontSize='30px';
+			$(com1Wrap).css('font-size', newFontSize);
+		}
+		while(com1Wrap.scrollWidth > com1Wrap.offsetWidth || com1Wrap.scrollHeight > com1Wrap.offsetHeight){
+			newFontSize = (parseFloat($(com1Wrap).css('font-size').slice(0,-2)) * .95) + 'px';
+			$(com1Wrap).css('font-size', newFontSize);
+		}
+			
+			
+		});
+	TweenMax.to('#com1Wrapper',nameTime,{css:{x: '+0px', opacity: 1},ease:Quad.easeOut,delay:nameDelay}); 
+	}})});
+	
+	com2Replicant.on('change', (newValue, oldValue) => {
+	TweenMax.to('#com2Wrapper',nameTime,{css:{x: p2Move, opacity: 0},ease:Quad.easeOut,delay:0,onComplete:function(){
+		com2Title.innerText = `${newValue}`;
+		com2Wrap.each(function(i, com2Wrap){ //function to resize font if text string is too long and causes div to overflow its width/height boundaries			
+			var newFontSize;
+		if(com2Wrap.scrollWidth <= com2Wrap.offsetWidth || com2Wrap.scrollHeight <= com2Wrap.offsetHeight){
+			newFontSize='30px';
+			$(com2Wrap).css('font-size', newFontSize);
+		}
+		while(com2Wrap.scrollWidth > com2Wrap.offsetWidth || com2Wrap.scrollHeight > com2Wrap.offsetHeight){
+			newFontSize = (parseFloat($(com2Wrap).css('font-size').slice(0,-2)) * .95) + 'px';
+			$(com2Wrap).css('font-size', newFontSize);
+		}
+			
+			 
+		});
+	TweenMax.to('#com2Wrapper',nameTime,{css:{x: '+0px', opacity: 1},ease:Quad.easeOut,delay:nameDelay});
+	}})});
+	
+	social1Replicant.on('change', (newValue, oldValue) => {
+	TweenMax.to('#com1Wrapper',nameTime,{css:{x: p1Move, opacity: 0},ease:Quad.easeOut,delay:0,onComplete:function(){
+		com1Social.innerText = `${newValue}`;
+		social1Wrap.each(function(i, social1Wrap){ //function to resize font if text string is too long and causes div to overflow its width/height boundaries			
+			var newFontSize;
+		if(social1Wrap.scrollWidth <= social1Wrap.offsetWidth || social1Wrap.scrollHeight <= social1Wrap.offsetHeight){
+			newFontSize='30px';
+			$(social1Wrap).css('font-size', newFontSize);
+		}
+		while(social1Wrap.scrollWidth > social1Wrap.offsetWidth || social1Wrap.scrollHeight > social1Wrap.offsetHeight){
+			newFontSize = (parseFloat($(social1Wrap).css('font-size').slice(0,-2)) * .95) + 'px';
+			$(social1Wrap).css('font-size', newFontSize);
+		}
+			
+			
+		});
+	TweenMax.to('#com1Wrapper',nameTime,{css:{x: '+0px', opacity: 1},ease:Quad.easeOut,delay:nameDelay}); 
+	}})});
+	
+	social2Replicant.on('change', (newValue, oldValue) => {
+	TweenMax.to('#com2Wrapper',nameTime,{css:{x: p2Move, opacity: 0},ease:Quad.easeOut,delay:0,onComplete:function(){
+		com2Social.innerText = `${newValue}`;
+		social2Wrap.each(function(i, social2Wrap){ //function to resize font if text string is too long and causes div to overflow its width/height boundaries			
+			var newFontSize;
+		if(social2Wrap.scrollWidth <= social2Wrap.offsetWidth || social2Wrap.scrollHeight <= social2Wrap.offsetHeight){
+			newFontSize='30px';
+			$(social2Wrap).css('font-size', newFontSize);
+		}
+		while(social2Wrap.scrollWidth > social2Wrap.offsetWidth || social2Wrap.scrollHeight > social2Wrap.offsetHeight){
+			newFontSize = (parseFloat($(social2Wrap).css('font-size').slice(0,-2)) * .95) + 'px';
+			$(social2Wrap).css('font-size', newFontSize);
+		}
+			
+			
+		});
+	TweenMax.to('#com1Wrapper',nameTime,{css:{x: '+0px', opacity: 1},ease:Quad.easeOut,delay:nameDelay}); 
+	}})});
 </script>
 
 
