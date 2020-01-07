@@ -114,7 +114,7 @@
 	
 	namep1Replicant.on('change', (newValue, oldValue) => {
 	TweenMax.to('#com1Wrapper',nameTime,{css:{x: p1Move, opacity: 0},ease:Quad.easeOut,delay:0,onComplete:function(){
-		com1Title.innerText = `${newValue}`;
+		com2Title.innerText = `${newValue}`;
 		com1Wrap.each(function(i, com1Wrap){ //function to resize font if text string is too long and causes div to overflow its width/height boundaries			
 			var newFontSize;
 		if(com1Wrap.scrollWidth <= com1Wrap.offsetWidth || com1Wrap.scrollHeight <= com1Wrap.offsetHeight){
@@ -133,7 +133,7 @@
 	
 	namep2Replicant.on('change', (newValue, oldValue) => {
 	TweenMax.to('#com2Wrapper',nameTime,{css:{x: p2Move, opacity: 0},ease:Quad.easeOut,delay:0,onComplete:function(){
-		com2Title.innerText = `${newValue}`;
+		com1Title.innerText = `${newValue}`;
 		com2Wrap.each(function(i, com2Wrap){ //function to resize font if text string is too long and causes div to overflow its width/height boundaries			
 			var newFontSize;
 		if(com2Wrap.scrollWidth <= com2Wrap.offsetWidth || com2Wrap.scrollHeight <= com2Wrap.offsetHeight){
